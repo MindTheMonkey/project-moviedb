@@ -190,7 +190,7 @@ function listMovies(movies) {
   })
 }
 
-const populateFilter = (type) => {
+const populateFilter = (movies, type) => {
   const element = document.getElementById(`filter-${type}`);
   let options = `<option value="">All</option>\n`;
   const optionsArray = movies.reduce((acc, movie) => {
@@ -209,16 +209,13 @@ const populateFilter = (type) => {
   element.innerHTML = options;
 }
 
-populateFilter("genre");
-populateFilter("year");
-populateFilter("actors");
+populateFilter(movies, "genre");
+populateFilter(movies, "year");
+populateFilter(movies, "actors");
+populateFilter(movies, "director");
+
 
 const performFilter = (movies, type) => {
-  const filterValue = document.getElementById(`filter-${type}`).value;
-  return movies.filter((movie) => filterValue ? movie[type] == filterValue : true ) || []
-}
-
-const performFilterArray = (movies, type) => {
   const filterValue = document.getElementById(`filter-${type}`).value;
   if (filterValue) {
     return movies.filter((movie) => {
@@ -239,14 +236,31 @@ const filterMovies = () => {
   // we start with all movies
   let filteredMovies = movies;
 
-  // Next we filter movies based on actors. If for somereason we dont get any movies we make sure that we pass an empty array.
-  // filteredMovies = filteredMovies.filter(actorFilter) || [];
+  filteredMovies = performFilter(filteredMovies,"actors");
+  filteredMovies = performFilter(filteredMovies,"genre");
+  filteredMovies = performFilter(filteredMovies,"year");
+  filteredMovies = performFilter(filteredMovies,"director");
 
-  const genre = document.getElementById(`filter-genre`).value;
+  const sort = document.getElementById(`filter-sort`).value;
 
-  filteredMovies = performFilterArray(filteredMovies,"actors");
-  filteredMovies = performFilterArray(filteredMovies,"genre") || [];
-  filteredMovies = performFilterArray(filteredMovies,"year") || [];
+  switch(sort) {
+    case "title":
+      filteredMovies.sort((a,b) => a.title.localeCompare(b.title))
+      break;
+
+    case "rating":
+      filteredMovies.sort((a,b) => a.rating - b.rating )
+      break;
+    
+    case "year":
+      filteredMovies.sort((a,b) => a.year - b.year )
+      break;
+
+    default:
+  }
+
+  if(document.getElementById(`filter-sort-reverse`).checked) filteredMovies.reverse();
+
   listMovies( filteredMovies );
 }
 

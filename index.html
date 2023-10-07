@@ -10,12 +10,27 @@
   <h1>Project Movie Database</h1>
   <div id="filters">
     <form>
-      <select id="filter-genre" class="filter">
+      <label for="filter-genre">Genre</label>
+      <select name="filter-genre" id="filter-genre" class="filter">
       </select>
-      <select id="filter-actors" class="filter">
+      <label for="filter-actors">Actor</label>
+      <select name="filter-actors" id="filter-actors" class="filter">
       </select>
-      <select id="filter-year" class="filter">
+      <label for="filter-genre">Release year</label>
+      <select name="filter-year" id="filter-year" class="filter">
       </select>
+      <label for="filter-director">Director</label>
+      <select name="filter-director" id="filter-director" class="filter">
+      </select>
+      <label for="filter-sort">Sort by</label>
+      <select name="filter-sort" id="filter-sort" class="filter">
+        <option value="">No Sorting</option>
+        <option value="title">Title</option>
+        <option value="rating">Rating</option>
+        <option value="year">Year</option>
+      </select>
+      <label for="filter-sort-reverse">Reverse Order</label>
+      <input type="checkbox" name="filter-sort-reverse" id="filter-sort-reverse" class="filter">
     </form>
   </div>
   <div id="movies-container"></div>
