@@ -190,116 +190,49 @@ function listMovies(movies) {
   })
 }
 
-// Lets get all different actors and save them to a variable.
-const movieActors = movies.reduce((actors, movie) => {
-    movie.actors.forEach((actor) => {
-      if(!actors.includes(actor)) actors.push(actor)
-    })
-  return actors
-}, []);
-
-
-
-
-
-
-///////////
-// YEAR
-///////////
-
-function populateFilter(type) {
+const populateFilter = (type) => {
   const element = document.getElementById(`filter-${type}`);
   let options = `<option value="">All</option>\n`;
-  console.log(movies);
   const optionsArray = movies.reduce((acc, movie) => {
-    console.log(movie[type]);
-    if (!acc.includes(movie[type])) {
-      acc.push(movie[type])
-    }  
-    return acc
-  },[])
+    const movieItem = movie[type];
+    if (Array.isArray(movieItem)) {
+        movieItem.forEach((i) => {
+            if (!acc.includes(i)) acc.push(i);
+        });
+    } else {
+        if (!acc.includes(movieItem)) acc.push(movieItem);
+    }
+    return acc;
+  }, []);
+  optionsArray.sort();
   optionsArray.forEach((item) => options += `<option value="${item}">${item}</option>\n`)
   element.innerHTML = options;
 }
 
-
-
-const populateActorsFilter = (movieActors) => {
-  // lets sort the genres 
-  movieActors.sort((a, b) => a.localeCompare(b));
-
-  // We iniate an empty strying to hold our select options
-  let options = '<option value="ALL">All</option>\n';
-  const actorSelectElement = document.getElementById('filter-actors');
-
-  // We loop through our array to find
-  movieActors.forEach((actor) => {
-    options += `<option value="${actor}">${actor}</option>\n`;
-  });
-
-  // If we dont have an emptry string 
-  if (options !== "") {
-    actorSelectElement.innerHTML = options;
-  }
-}
-
 populateFilter("genre");
 populateFilter("year");
-populateActorsFilter(movieActors);
+populateFilter("actors");
 
-
-
-
-const actorFilter = (movie) => {
-  const actor = document.getElementById("filter-actors").value;
-  if (actor === "ALL") {
-    return true;
-  } else {
-    return movie.actors.includes(actor);
-  }
-}
-
-const genreFilter = (movie) => {
-  const genre = document.getElementById("filter-genre").value;
-  if (genre) {
-    return movie.genre === genre;
-  } else {
-    return true;
-  }
-}
-
-const yearFilter = (movie) => {
-  const year = document.getElementById("filter-year").value;
-  if (year) {
-    return movie.year == year;
-  } else {
-    return true;
-  }
-}
-
-const doFilter = (movies, type) => {
+const performFilter = (movies, type) => {
   const filterValue = document.getElementById(`filter-${type}`).value;
   return movies.filter((movie) => filterValue ? movie[type] == filterValue : true ) || []
 }
 
-const doFilterArray = (movies, type) => {
+const performFilterArray = (movies, type) => {
   const filterValue = document.getElementById(`filter-${type}`).value;
-  console.log(filterValue)
-  return movies.filter((movie) => {
-    switch(true) {
-      case !filterValue:
-        console.log("No filter")
-        return true;
-        break;
-      
-      case Array.isArray(movie[type]):
+  if (filterValue) {
+    return movies.filter((movie) => {
+      if (Array.isArray(movie[type])) {
         return movie[type].includes(filterValue);
-        break;
-    
-      default:
+      }
+      else {
         return movie[type] == filterValue;
-    }
-  }) || []
+      }
+    }) || []  
+  } else {
+    // if we dont have a filtervalue there is no filter to apply and we return the movies parameter untouched. If for some reason the movies object is null or empty string we return an empty array
+    return movies || []
+  }
 }
 
 const filterMovies = () => {
@@ -311,9 +244,9 @@ const filterMovies = () => {
 
   const genre = document.getElementById(`filter-genre`).value;
 
-  filteredMovies = doFilterArray(filteredMovies,"actors");
-  filteredMovies = doFilter(filteredMovies,"genre") || [];
-  filteredMovies = doFilter(filteredMovies,"year") || [];
+  filteredMovies = performFilterArray(filteredMovies,"actors");
+  filteredMovies = performFilterArray(filteredMovies,"genre") || [];
+  filteredMovies = performFilterArray(filteredMovies,"year") || [];
   listMovies( filteredMovies );
 }
 
