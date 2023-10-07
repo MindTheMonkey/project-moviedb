@@ -1,406 +1,323 @@
-/*Here we have created two different arrays that you can work with if you want.
-If you choose to create your own arrays with elements, just make sure that some
-of the properties make sense to filter on, and some to sort on.*/
-
-const books = [
+const movies = [
   {
-    title: 'The Great Gatsby',
-    author: 'F. Scott Fitzgerald',
-    year: 1925,
-    genre: 'Fiction',
-    rating: 4.2,
-    description:
-      'A classic novel set in the Roaring Twenties, it explores themes of wealth, love, and the American Dream through the enigmatic Jay Gatsby.',
-    image: './books-images/the-great-gatsby.jpg'
+    title: 'The Shawshank Redemption',
+    director: 'Frank Darabont',
+    year: 1994,
+    genre: 'Drama',
+    rating: 9.3,
+    description: 'Two imprisoned men bond over a number of years, finding solace and eventual redemption through acts of common decency.',
+    image: './movie-posters/the-shawshank-redemption.jpg',
+    actors: ['Tim Robbins', 'Morgan Freeman', 'Bob Gunton', 'William Sadler', 'Clancy Brown', 'Gil Bellows']
   },
   {
-    title: 'To Kill a Mockingbird',
-    author: 'Harper Lee',
-    year: 1960,
-    genre: 'Fiction',
-    rating: 4.5,
-    description:
-      'Set in the American South, this novel tackles issues of racism and injustice through the eyes of young Scout Finch.',
-    image: './books-images/to-kill-a-mockingbird.jpg'
+    title: 'The Godfather',
+    director: 'Francis Ford Coppola',
+    year: 1972,
+    genre: 'Crime',
+    rating: 9.2,
+    description: 'The aging patriarch of an organized crime dynasty transfers control of his clandestine empire to his reluctant son.',
+    image: './movie-posters/the-godfather.jpg',
+    actors: ['Marlon Brando', 'Al Pacino', 'James Caan', 'Robert Duvall', 'Diane Keaton', 'John Cazale']
   },
   {
-    title: '1984',
-    author: 'George Orwell',
-    year: 1949,
-    genre: 'Science Fiction',
-    rating: 4.4,
-    description:
-      'A dystopian classic that explores totalitarianism and the consequences of a surveillance state in a bleak future.',
-    image: './books-images/1984.jpg'
+    title: 'Pulp Fiction',
+    director: 'Quentin Tarantino',
+    year: 1994,
+    genre: 'Crime',
+    rating: 8.9,
+    description: 'The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.',
+    image: './movie-posters/pulp-fiction.jpg',
+    actors: ['John Travolta', 'Uma Thurman', 'Samuel L. Jackson', 'Bruce Willis', 'Ving Rhames', 'Harvey Keitel']
   },
   {
-    title: 'Pride and Prejudice',
-    author: 'Jane Austen',
-    year: 1813,
-    genre: 'Fiction',
-    rating: 4.25,
-    description:
-      'A timeless romance novel that examines societal expectations and the misunderstandings that can arise from pride and prejudice.',
-    image: './books-images/pride-and-prejudice.jpg'
+    title: 'Forrest Gump',
+    director: 'Robert Zemeckis',
+    year: 1994,
+    genre: 'Drama',
+    rating: 8.8,
+    description: 'The presidencies of Kennedy and Johnson, the Vietnam War, the Watergate scandal and other historical events unfold from the perspective of an Alabama man with an IQ of 75.',
+    image: './movie-posters/forrest-gump.jpg',
+    actors: ['Tom Hanks', 'Robin Wright', 'Gary Sinise', 'Sally Field', 'Mykelti Williamson', 'Haley Joel Osment']
   },
   {
-    title: 'The Catcher in the Rye',
-    author: 'J.D. Salinger',
-    year: 1951,
-    genre: 'Fiction',
-    rating: 4,
-    description:
-      'Narrated by the teenage Holden Caulfield, the novel explores themes of alienation and the search for authenticity.',
-    image: './books-images/unknown.jpg'
-  },
-  {
-    title: 'The Hobbit',
-    author: 'J.R.R. Tolkien',
-    year: 1937,
-    genre: 'Fantasy',
-    rating: 4.6,
-    description:
-      'A fantasy adventure novel that follows Bilbo Baggins on a quest to help a group of dwarves reclaim their homeland from a dragon.',
-    image: './books-images/the-hobbit.jpg'
-  },
-  {
-    title: "Harry Potter and the Sorcerer's Stone",
-    author: 'J.K. Rowling',
-    year: 1997,
-    genre: 'Fantasy',
-    rating: 4.7,
-    description:
-      'The first book in the beloved Harry Potter series, it introduces readers to the magical world of Hogwarts and the young wizard Harry Potter.',
-    image: "./books-images/harry-potter-and-the-sorcerer'.jpg"
-  },
-  {
-    title: 'Moby-Dick',
-    author: 'Herman Melville',
-    year: 1851,
-    genre: 'Adventure',
-    rating: 4.1,
-    description:
-      'An epic tale of obsession, revenge, and the relentless pursuit of the great white whale, Moby Dick.',
-    image: './books-images/moby-dick.jpg'
-  },
-  {
-    title: 'The Lord of the Rings: The Fellowship of the Ring',
-    author: 'J.R.R. Tolkien',
-    year: 1954,
-    genre: 'Fantasy',
-    rating: 4.55,
-    description:
-      'The first volume of the epic fantasy trilogy follows Frodo Baggins and the Fellowship on their quest to destroy the One Ring.',
-    image: './books-images/the-lord-of-the-rings.jpg'
-  },
-  {
-    title: 'The Shining',
-    author: 'Stephen King',
-    year: 1977,
-    genre: 'Horror',
-    rating: 4.3,
-    description:
-      "A psychological horror novel that tells the story of the Torrance family's terrifying experiences at the haunted Overlook Hotel.",
-    image: './books-images/unknown.jpg'
-  },
-  {
-    title: 'The Chronicles of Narnia: The Lion, the Witch and the Wardrobe',
-    author: 'C.S. Lewis',
-    year: 1950,
-    genre: 'Fantasy',
-    rating: 4.15,
-    description:
-      'The first book in the Chronicles of Narnia series, it follows the adventures of children who discover the magical land of Narnia.',
-    image: './books-images/the-chronicles-of-narnia.jpg'
-  },
-  {
-    title: 'The Da Vinci Code',
-    author: 'Dan Brown',
-    year: 2003,
-    genre: 'Mystery',
-    rating: 3.8,
-    description:
-      'A gripping mystery thriller that follows Harvard symbologist Robert Langdon as he unravels the secrets of the Da Vinci Code.',
-    image: './books-images/unknown.jpg'
-  },
-  {
-    title: 'The Alchemist',
-    author: 'Paulo Coelho',
-    year: 1988,
-    genre: 'Fiction',
-    rating: 4.25,
-    description:
-      'A philosophical novel that tells the story of Santiago, a shepherd boy, on his quest to discover his personal legend.',
-    image: './books-images/unknown.jpg'
-  },
-  {
-    title: 'The Hunger Games',
-    author: 'Suzanne Collins',
+    title: 'The Dark Knight',
+    director: 'Christopher Nolan',
     year: 2008,
-    genre: 'Science Fiction',
-    rating: 4.3,
-    description:
-      "In a dystopian future, Katniss Everdeen becomes a symbol of rebellion when she volunteers to take her sister's place in the brutal Hunger Games.",
-    image: './books-images/unknown.jpg'
+    genre: 'Action',
+    rating: 9.0,
+    description: 'When the menace known as The Joker emerges from his mysterious past, he wreaks havoc and chaos on the people of Gotham.',
+    image: './movie-posters/the-dark-knight.jpg',
+    actors: ['Christian Bale', 'Heath Ledger', 'Aaron Eckhart', 'Michael Caine', 'Maggie Gyllenhaal', 'Gary Oldman']
   },
   {
-    title: 'The Girl with the Dragon Tattoo',
-    author: 'Stieg Larsson',
+    title: 'Parasite',
+    director: 'Bong Joon Ho',
+    year: 2019,
+    genre: 'Thriller',
+    rating: 8.6,
+    description: 'Greed and class discrimination threaten the newly formed symbiotic relationship between the wealthy Park family and the destitute Kim clan.',
+    image: './movie-posters/parasite.jpg',
+    actors: ['Kang-ho Song', 'Sun-kyun Lee', 'Yeo-jeong Jo', 'Woo-sik Choi', 'Hye-jin Jang', 'So-dam Park']
+  },
+  {
+    title: 'Batman Begins',
+    director: 'Christopher Nolan',
     year: 2005,
-    genre: 'Mystery',
-    rating: 4.1,
-    description:
-      'A gripping mystery novel featuring investigative journalist Mikael Blomkvist and the enigmatic hacker Lisbeth Salander.',
-    image: './books-images/unknown.jpg'
+    genre: 'Action',
+    rating: 8.2,
+    description: 'After training with his mentor, Batman begins his fight to free crime-ridden Gotham City from corruption.',
+    image: './movie-posters/batman-begins.jpg',
+    actors: ['Christian Bale', 'Michael Caine', 'Liam Neeson', 'Katie Holmes', 'Gary Oldman', 'Cillian Murphy']
   },
   {
-    title: 'The Road',
-    author: 'Cormac McCarthy',
-    year: 2006,
-    genre: 'Dystopian',
-    rating: 4,
-    description:
-      "Set in a post-apocalyptic world, it follows a father and son's harrowing journey to survive and find safety.",
-    image: './books-images/unknown.jpg'
+    title: 'The Dark Knight Rises',
+    director: 'Christopher Nolan',
+    year: 2012,
+    genre: 'Action',
+    rating: 8.4,
+    description: 'Eight years after the Joker\'s reign of anarchy, Batman, with the help of the enigmatic Catwoman, is forced from his exile to save Gotham City.',
+    image: './movie-posters/the-dark-knight-rises.jpg',
+    actors: ['Christian Bale', 'Tom Hardy', 'Anne Hathaway', 'Gary Oldman', 'Joseph Gordon-Levitt', 'Marion Cotillard']
   },
   {
-    title: "The Hitchhiker's Guide to the Galaxy",
-    author: 'Douglas Adams',
-    year: 1979,
-    genre: 'Science Fiction',
-    rating: 4.35,
-    description:
-      "A comedic science fiction series that follows the misadventures of Arthur Dent after Earth's destruction.",
-    image: './books-images/unknown.jpg'
+    title: 'The Godfather: Part II',
+    director: 'Francis Ford Coppola',
+    year: 1974,
+    genre: 'Crime',
+    rating: 9.0,
+    description: 'The early life and career of Vito Corleone in 1920s New York is portrayed while his son, Michael, expands and tightens his grip on the family crime syndicate.',
+    image: './movie-posters/godfather-2.jpg',
+    actors: ['Al Pacino', 'Robert De Niro', 'Robert Duvall', 'Diane Keaton', 'John Cazale', 'Talia Shire']
   },
   {
-    title: 'The Giver',
-    author: 'Lois Lowry',
+    title: 'Groundhog Day',
+    director: 'Harold Ramis',
     year: 1993,
-    genre: 'Dystopian',
-    rating: 4.12,
-    description:
-      'A dystopian novel set in a seemingly perfect society where young Jonas discovers the dark truth beneath the surface.',
-    image: './books-images/unknown.jpg'
+    genre: 'Comedy',
+    rating: 8.0,
+    description: 'A weatherman finds himself inexplicably living the same day over and over again.',
+    image: './movie-posters/groundhog-day.jpg',
+    actors: ['Bill Murray', 'Andie MacDowell', 'Chris Elliott', 'Stephen Tobolowsky', 'Brian Doyle-Murray', 'Marita Geraghty']
+  },
+  {
+    title: 'Die Hard',
+    director: 'John McTiernan',
+    year: 1988,
+    genre: 'Action',
+    rating: 8.2,
+    description: 'An NYPD officer tries to save his wife and several others taken hostage by German terrorists during a Christmas party.',
+    image: './movie-posters/die-hard.jpg',
+    actors: ['Bruce Willis', 'Alan Rickman', 'Bonnie Bedelia', 'Reginald VelJohnson', 'Paul Gleason', 'William Atherton']
+  },
+  {
+    title: 'Die Hard 2',
+    director: 'Renny Harlin',
+    year: 1990,
+    genre: 'Action',
+    rating: 7.2,
+    description: 'John McClane attempts to avert disaster as rogue military operatives seize control of Dulles International Airport in Washington, D.C.',
+    image: './movie-posters/die-hard-2.jpg',
+    actors: ['Bruce Willis', 'Bonnie Bedelia', 'William Atherton', 'Reginald VelJohnson', 'Franco Nero', 'John Amos']
+  },
+  {
+    title: 'Caddyshack',
+    director: 'Harold Ramis',
+    year: 1980,
+    genre: 'Comedy',
+    rating: 7.3,
+    description: 'An exclusive golf course has to deal with a brash new member and a destructive dancing gopher.',
+    image: './movie-posters/caddyshack.jpg',
+    actors: ['Chevy Chase', 'Rodney Dangerfield', 'Ted Knight', 'Michael O\'Keefe', 'Bill Murray', 'Sarah Holcomb']
+  },
+  {
+    title: 'Låt den rätte komma in',
+    director: 'Tomas Alfredson',
+    year: 2008,
+    genre: 'Drama',
+    rating: 7.9,
+    description: 'Oskar, an overlooked and bullied boy, finds love and revenge through Eli, a beautiful but peculiar girl.',
+    image: './movie-posters/lat-den-ratte-komma-in.jpg',
+    actors: ['Kåre Hedebrant', 'Lina Leandersson', 'Per Ragnar', 'Henrik Dahl', 'Karin Bergquist', 'Peter Carlberg']
+  },
+  {
+    title: 'Snabba Cash',
+    director: 'Daniel Espinosa',
+    year: 2010,
+    genre: 'Action',
+    rating: 6.7,
+    description: 'When JW becomes a drug runner in order to maintain his double life, his fate becomes tied to two other men: Jorge, a fugitive on the run from both the Serbian mafia and the police, and mafia enforcer Mrado, who is on the hunt for Jorge.',
+    image: './movie-posters/snabba-cash.jpg',
+    actors: ['Joel Kinnaman', 'Matias Varela', 'Dragomir Mrsic', 'Lisa Henni', 'Mahmut Suvakci', 'Jones Danko']
+  },
+  {
+    title: 'RoboCop',
+    director: 'José Padilha',
+    year: 2014,
+    genre: 'Action',
+    rating: 6.1,
+    description: 'In 2028 Detroit, when Alex Murphy, a loving husband, father and good cop, is critically injured in the line of duty, the multinational conglomerate OmniCorp sees their chance for a part-man, part-robot police officer.',
+    image: './movie-posters/robocop.jpg',
+    actors: ['Joel Kinnaman', 'Gary Oldman', 'Michael Keaton', 'Abbie Cornish', 'Jackie Earle Haley', 'Michael K. Williams']
   }
-]
+];
 
-const recipes = [
-  {
-    name: 'Individual vegetarian lasagnes',
-    cuisineType: ['italian'],
-    ingredients: [
-      '1.2 kg cherry tomatoes',
-      '5 sprigs of fresh thyme',
-      'extra virgin olive oil',
-      '2 shallots',
-      '2 cloves of garlic',
-      '500 g baby spinach',
-      '8-12 fresh or dried lasagne sheets',
-      '350 g ricotta cheese',
-      'WHITE SAUCE',
-      '600 ml milk',
-      '25 g unsalted butter',
-      '2 heaped tablespoons flour',
-      '150 g vegetarian sharp, mature cheese',
-      '100 g mozzarella'
-    ],
-    source: 'Jamie Oliver',
-    totalTime: 130,
-    url: 'http://www.jamieoliver.com/recipes/vegetables-recipes/individual-vegetarian-lasagnes/',
-    image: './recipe-images/individual-vegetarian-lasagnes.jpg'
-  },
-  {
-    name: 'Vegetarian Stir-Fried Garlic Scape',
-    cuisineType: ['Balanced'],
-    ingredients: [
-      '8 oz. garlic scapes',
-      '3 oz. baby corn',
-      '3 oz. carrots',
-      '1 oz. dried shiitake mushrooms',
-      '1 clove of garlic sliced thinly',
-      '3 slices of fresh ginger root',
-      '2 tablespoons vegetable oil',
-      '1/4 cup shaoxing cooking wine',
-      '1/4 vegetarian stock or water',
-      '1 tablespoon light soy sauce',
-      '1 teaspoon sugar',
-      '1 teaspoon cornstarch',
-      '1/4 teaspoon ground white pepper'
-    ],
-    source: 'Red Cook',
-    totalTime: null,
-    URL: 'http://redcook.net/2010/06/16/garlic-scape-an-off-menu-treat/',
-    image: './recipe-images/vegetarian-stir-fried-garlic-s.jpg'
-  },
-  {
-    name: 'Cheat’s cheesy focaccia',
-    cuisineType: ['Italian'],
-    ingredients: [
-      '500g pack bread mix',
-      '2 tbsp olive oil , plus a little extra for drizzling',
-      '25g parmesan (or vegetarian alternative), grated',
-      '75g dolcelatte cheese (or vegetarian alternative)'
-    ],
-    source: 'BBC Good Food',
-    totalTime: 40,
-    URL: 'https://www.bbcgoodfood.com/recipes/cheats-cheesy-focaccia',
-    image: './recipe-images/cheat’s-cheesy-focaccia.jpg'
-  },
-  {
-    name: "Vegetarian Shepherd's Pie",
-    cuisineType: ['Balanced', 'High-Fiber'],
-    ingredients: [
-      '2 tablespoons extra-virgin olive oil',
-      '1 large onion, finely diced',
-      '2 carrots, peeled and thinly sliced',
-      '2 celery stalks, thinly sliced',
-      '10 ounces cremini mushrooms, trimmed and sliced',
-      '1 tablespoon tomato paste',
-      "1 tablespoon vegetarian Worcestershire sauce, such as Annie's Naturals",
-      '1 dried bay leaf',
-      '1 cup French green lentils, picked over',
-      'Kosher salt and freshly ground pepper',
-      '1 cup frozen peas',
-      '2 pounds Yukon Gold potatoes, scrubbed and cut into 1 1/2-inch pieces',
-      '4 cloves garlic',
-      '4 tablespoons unsalted butter',
-      '1/2 cup whole milk, warmed'
-    ],
-    source: 'Martha Stewart',
-    totalTime: 120,
-    URL: 'https://www.marthastewart.com/1535235/vegetarian-shepherds-pie',
-    image: "./recipe-images/vegetarian-shepherd's-pie.jpg"
-  },
-  {
-    name: 'Chicken Paprikash',
-    cuisineType: ['Low-Carb'],
-    ingredients: [
-      '640 grams chicken - drumsticks and thighs ( 3 whole chicken legs cut apart)',
-      '1/2 teaspoon salt',
-      '1/4 teaspoon black pepper',
-      '1 tablespoon butter – cultured unsalted (or olive oil)',
-      '240 grams onion sliced thin (1 large onion)',
-      '70 grams Anaheim pepper chopped (1 large pepper)',
-      '25 grams paprika (about 1/4 cup)',
-      '1 cup chicken stock',
-      '1/2 teaspoon salt',
-      '1/2 cup sour cream',
-      '1 tablespoon flour – all-purpose'
-    ],
-    source: 'No Recipes',
-    totalTime: 80,
-    URL: 'http://norecipes.com/recipe/chicken-paprikash/',
-    image: './recipe-images/chicken-paprikash.jpg'
-  },
-  {
-    name: 'Baked Chicken',
-    cuisineType: ['american'],
-    ingredients: [
-      '6 bone-in chicken breast halves, or 6 chicken thighs and wings, skin-on',
-      '1/2 teaspoon coarse salt',
-      '1/2 teaspoon Mrs. Dash seasoning',
-      '1/4 teaspoon freshly ground black pepper'
-    ],
-    source: 'Martha Stewart',
-    totalTime: 90,
-    url: 'http://www.marthastewart.com/318981/baked-chicken',
-    image: './recipe-images/baked-chicken.jpg'
-  },
-  {
-    name: 'Deep Fried Fish Bones',
-    cuisineType: ['south east asian'],
-    ingredients: ['8 small whiting fish or smelt', '4 cups vegetable oil'],
-    source: 'Serious Eats',
-    totalTime: 31,
-    url: 'http://www.seriouseats.com/recipes/2011/03/deep-fried-fish-bones-recipe.html',
-    image: './recipe-images/deep-fried-fish-bones.jpg'
-  },
-  {
-    name: 'Burnt-Scallion Fish',
-    cuisineType: ['chinese'],
-    ingredients: [
-      '2 bunches scallions',
-      '8 tbsp. butter',
-      '2 8-oz. fish filets'
-    ],
-    source: 'Saveur',
-    totalTime: 70,
-    url: 'http://www.saveur.com/article/Recipes/Burnt-Scallion-Fish',
-    image: './recipe-images/fish-dish.jpg'
-  },
-  {
-    name: 'Curry-Crusted Fish',
-    cuisineType: ['south east asian'],
-    ingredients: [
-      '3 slices bread , about 85g/3oz in total',
-      '1 lime',
-      '1.0 tbsp Korma curry paste',
-      '4 thick white fish fillets'
-    ],
-    source: 'BBC Good Food',
-    totalTime: 80,
-    url: 'http://www.bbcgoodfood.com/recipes/4717/',
-    image: './recipe-images/fish-dish.jpg'
-  },
-  {
-    name: 'Meat Stock',
-    cuisineType: 'american',
-    ingredients: [
-      '2.5 pounds beef marrow bones',
-      '1 large onion, quartered',
-      '2 carrots, sliced',
-      '1 leek, cleaned and sliced',
-      '2 celery stalks, sliced',
-      '2.5 pounds organic beef stew meat, cubed',
-      '2 tablespoons tomato paste',
-      '5 cloves garlic',
-      '2 bay leaves',
-      '3 sprigs thyme',
-      '3 sprigs Italian parsley',
-      '1/2 teaspoon black peppercorns'
-    ],
-    source: 'Food52',
-    totalTime: 60,
-    url: 'https://food52.com/recipes/3712-meat-stock',
-    image: './recipe-images/meat.jpg'
-  },
-  {
-    name: 'Homemade Meat Broth',
-    cuisineType: 'american',
-    ingredients: [
-      '1 teaspoon salt',
-      '1 carrot, peeled',
-      '1 medium onion, peeled',
-      '2 or 3 celery stalks',
-      '¼ red or yellow bell pepper, stripped of all its seeds',
-      '1 small boiling potato, peeled',
-      '1 ripe, fresh tomato, or 1 canned Italian plum tomato, drained of juice',
-      '5 pounds assorted pieces of meat and bones (see meat suggestions above), of which no less than 1½ pounds is all meat'
-    ],
-    source: 'Cookstr',
-    totalTime: 60,
-    url: 'http://www.cookstr.com/recipes/il-brodo-homemade-meat-broth',
-    image: './recipe-images/meat.jpg'
-  },
-  {
-    name: 'Spice-Rubbed Grilled Flap Meat (Sirloin Tip) Recipe',
-    cuisineType: 'south-american',
-    ingredients: [
-      '1 tablespoon whole black peppercorns, toasted',
-      '1 teaspoon coriander seed, toasted',
-      '1 teaspoon fennel seed, toasted',
-      '1 teaspoon cumin pods, toasted',
-      '1 teaspoon red pepper flakes',
-      '1/2 teaspoon dried oregano',
-      '2 medium cloves garlic, minced (about 2 teaspoons)',
-      '2 tablespoons vegetable or canola oil',
-      '1 whole flap meat steak, 2 to 2 1/2 pounds',
-      'Kosher salt'
-    ],
-    source: 'Serious Eats',
-    totalTime: 240,
-    url: 'http://www.seriouseats.com/recipes/2012/05/spice-rubbed-grilled-flap-meat-sirloin-tip-recipe.html',
-    image: './recipe-images/grilled.jpg'
+function listMovies(movies) {
+  const moviesDiv = document.getElementById('movies-container');
+  moviesDiv.innerHTML = "";
+  movies.forEach((movie) => {
+    moviesDiv.innerHTML += 
+      `<div class="card movie">
+        <div class="card-title">
+          <h3>${movie.title}</h3>
+        </div>
+        <div class="poster">
+          <img class="poster" src="${movie.image}">
+        </div>
+        <div class="genres">
+          <span class="genre">${movie.genre}</span>
+        </div>
+        <div class="rating">
+          <span class="label">Rating:</span>${movie.rating}
+        </div>        
+        <div class="released">
+          <span class="label">Released:</span>${movie.year}
+        </div>
+        <div class="actors">
+          <span class="label">Actors:</span>${movie.actors}
+        </div>
+        <p class="description"><span class="label">Plot:</span>${movie.description}</p>
+      </div>`
+  })
+}
+
+// Lets get all different actors and save them to a variable.
+const movieActors = movies.reduce((actors, movie) => {
+    movie.actors.forEach((actor) => {
+      if(!actors.includes(actor)) actors.push(actor)
+    })
+  return actors
+}, []);
+
+
+
+
+
+
+///////////
+// YEAR
+///////////
+
+function populateFilter(type) {
+  const element = document.getElementById(`filter-${type}`);
+  let options = `<option value="">All</option>\n`;
+  console.log(movies);
+  const optionsArray = movies.reduce((acc, movie) => {
+    console.log(movie[type]);
+    if (!acc.includes(movie[type])) {
+      acc.push(movie[type])
+    }  
+    return acc
+  },[])
+  optionsArray.forEach((item) => options += `<option value="${item}">${item}</option>\n`)
+  element.innerHTML = options;
+}
+
+
+
+const populateActorsFilter = (movieActors) => {
+  // lets sort the genres 
+  movieActors.sort((a, b) => a.localeCompare(b));
+
+  // We iniate an empty strying to hold our select options
+  let options = '<option value="ALL">All</option>\n';
+  const actorSelectElement = document.getElementById('filter-actors');
+
+  // We loop through our array to find
+  movieActors.forEach((actor) => {
+    options += `<option value="${actor}">${actor}</option>\n`;
+  });
+
+  // If we dont have an emptry string 
+  if (options !== "") {
+    actorSelectElement.innerHTML = options;
   }
-]
+}
+
+populateFilter("genre");
+populateFilter("year");
+populateActorsFilter(movieActors);
+
+
+
+
+const actorFilter = (movie) => {
+  const actor = document.getElementById("filter-actors").value;
+  if (actor === "ALL") {
+    return true;
+  } else {
+    return movie.actors.includes(actor);
+  }
+}
+
+const genreFilter = (movie) => {
+  const genre = document.getElementById("filter-genre").value;
+  if (genre) {
+    return movie.genre === genre;
+  } else {
+    return true;
+  }
+}
+
+const yearFilter = (movie) => {
+  const year = document.getElementById("filter-year").value;
+  if (year) {
+    return movie.year == year;
+  } else {
+    return true;
+  }
+}
+
+const doFilter = (movies, type) => {
+  const filterValue = document.getElementById(`filter-${type}`).value;
+  return movies.filter((movie) => filterValue ? movie[type] == filterValue : true ) || []
+}
+
+const doFilterArray = (movies, type) => {
+  const filterValue = document.getElementById(`filter-${type}`).value;
+  console.log(filterValue)
+  return movies.filter((movie) => {
+    switch(true) {
+      case !filterValue:
+        console.log("No filter")
+        return true;
+        break;
+      
+      case Array.isArray(movie[type]):
+        return movie[type].includes(filterValue);
+        break;
+    
+      default:
+        return movie[type] == filterValue;
+    }
+  }) || []
+}
+
+const filterMovies = () => {
+  // we start with all movies
+  let filteredMovies = movies;
+
+  // Next we filter movies based on actors. If for somereason we dont get any movies we make sure that we pass an empty array.
+  // filteredMovies = filteredMovies.filter(actorFilter) || [];
+
+  const genre = document.getElementById(`filter-genre`).value;
+
+  filteredMovies = doFilterArray(filteredMovies,"actors");
+  filteredMovies = doFilter(filteredMovies,"genre") || [];
+  filteredMovies = doFilter(filteredMovies,"year") || [];
+  listMovies( filteredMovies );
+}
+
+// Lets set a eventListner to catch any changes
+document.querySelectorAll(".filter").forEach((item) => item.addEventListener("change", filterMovies))
+
+listMovies( movies );

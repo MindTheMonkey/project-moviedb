@@ -1,0 +1,48 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#movies-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.movie {
+    border: 1px solid #DDD;
+    padding: 10px;
+    margin: 10px;
+    background: #EEE;
+    width: 300px;
+}
+
+.movie .poster {
+  max-width: 90%;
+  margin: auto;
+}
+
+.movie .poster img {
+    max-width: 100%;
+    max-height: 100%;
+    margin: auto;
+}
+
+.movie .genres {
+  padding: 5px 0px 5px 0px;
+  margin-bottom: 10px;
+}
+
+.movie .genre {
+  background-color: gray;
+  font-weight: 600;
+  font-size: 0.8em;
+  color: white;
+  margin-right: 5px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.movie .label {
+  font-weight: 600;
+  margin-right: 0.2em;
+}
+
