@@ -28,3 +28,6 @@ There are endless possibilities in how we can improve this and the methods used 
 
 ## View it live
 https://fluffy-daifuku-8d9ef4.netlify.app/
+
+### Stretch Goal Advanced
+https://sweet-faun-455e05.netlify.app/
