@@ -163,9 +163,11 @@ const movies = [
 
 function listMovies(movies) {
   const moviesDiv = document.getElementById('movies-container');
+  // We clear the current content to start from fresh
   moviesDiv.innerHTML = "";
+  // We loop through each movie in the passed movie object and add it to the innerhtml
   movies.forEach((movie) => {
-    moviesDiv.innerHTML += 
+    moviesDiv.innerHTML +=
       `<div class="card movie">
         <div class="card-title">
           <h3>${movie.title}</h3>
@@ -178,7 +180,7 @@ function listMovies(movies) {
         </div>
         <div class="rating">
           <span class="label">Rating:</span>${movie.rating}
-        </div>        
+        </div>
         <div class="released">
           <span class="label">Released:</span>${movie.year}
         </div>
@@ -186,13 +188,12 @@ function listMovies(movies) {
           <span class="label">Actors:</span>${movie.actors}
         </div>
         <p class="description"><span class="label">Plot:</span>${movie.description}</p>
-      </div>`
-  })
+      </div>`;
+  });
 }
 
+// We have populate function that identifies the distinct items of each property and then populates the filter
 const populateFilter = (movies, type) => {
-  const element = document.getElementById(`filter-${type}`);
-  let options = `<option value="">All</option>\n`;
   const optionsArray = movies.reduce((acc, movie) => {
     const movieItem = movie[type];
     if (Array.isArray(movieItem)) {
@@ -204,17 +205,35 @@ const populateFilter = (movies, type) => {
     }
     return acc;
   }, []);
+  // We sort the array as strings A-Z which is fine for now. The next step would be a whole other level where we would sort actors by last name and so on.
   optionsArray.sort();
-  optionsArray.forEach((item) => options += `<option value="${item}">${item}</option>\n`)
-  element.innerHTML = options;
+
+  // We find our declare a const for our current filter
+  const selectElement = document.getElementById(`filter-${type}`);
+
+  // We create a all option for each filter. This is set to a empty string. So no filter option value = no filter to be applied for this property.
+  const allOption = document.createElement("option");
+  allOption.text = "All";
+  allOption.value = "";
+  selectElement.appendChild(allOption);
+
+  // we loop through our filters options and popuplate the select with our different options and their values
+  optionsArray.forEach((item) => {
+    const filterOption = document.createElement("option");
+    filterOption.text = item;
+    filterOption.value = item;
+    selectElement.appendChild(filterOption);
+  });
+
 }
 
+// We define and populate the filters that we want to use for this project
 populateFilter(movies, "genre");
 populateFilter(movies, "year");
 populateFilter(movies, "actors");
 populateFilter(movies, "director");
 
-
+// This function performs the actual filtering for the provided property. It returns a list of the incoming movies that matched the filter
 const performFilter = (movies, type) => {
   const filterValue = document.getElementById(`filter-${type}`).value;
   if (filterValue) {
@@ -223,9 +242,10 @@ const performFilter = (movies, type) => {
         return movie[type].includes(filterValue);
       }
       else {
+        // We need to have a loose check as numbers are converted to strings when assigned as select options. So movie year is stored as 1994 in our object but it is stored as "1994" in the select option
         return movie[type] == filterValue;
       }
-    }) || []  
+    }) || []
   } else {
     // if we dont have a filtervalue there is no filter to apply and we return the movies parameter untouched. If for some reason the movies object is null or empty string we return an empty array
     return movies || []
@@ -233,38 +253,40 @@ const performFilter = (movies, type) => {
 }
 
 const filterMovies = () => {
-  // we start with all movies
+  // we start with out global movies object
   let filteredMovies = movies;
 
+  // we chain our filters so that each filter works on the output of the previous filter.
   filteredMovies = performFilter(filteredMovies,"actors");
   filteredMovies = performFilter(filteredMovies,"genre");
   filteredMovies = performFilter(filteredMovies,"year");
   filteredMovies = performFilter(filteredMovies,"director");
 
+  // For the sorting we have a switch statement that covers the different available sorting options and how the sort should be applied
   const sort = document.getElementById(`filter-sort`).value;
-
   switch(sort) {
     case "title":
-      filteredMovies.sort((a,b) => a.title.localeCompare(b.title))
+      filteredMovies.sort((a,b) => a.title.localeCompare(b.title));
       break;
 
     case "rating":
-      filteredMovies.sort((a,b) => a.rating - b.rating )
+      filteredMovies.sort((a,b) => a.rating - b.rating );
       break;
-    
+
     case "year":
-      filteredMovies.sort((a,b) => a.year - b.year )
+      filteredMovies.sort((a,b) => a.year - b.year );
       break;
 
     default:
   }
 
+  // If reverse checkbox is checked then we reverse the array. Since reverse actually affects the original array we dont need to store the result in a new variable
   if(document.getElementById(`filter-sort-reverse`).checked) filteredMovies.reverse();
 
   listMovies( filteredMovies );
 }
 
 // Lets set a eventListner to catch any changes
-document.querySelectorAll(".filter").forEach((item) => item.addEventListener("change", filterMovies))
+document.querySelectorAll(".filter").forEach((item) => item.addEventListener("change", filterMovies));
 
 listMovies( movies );
