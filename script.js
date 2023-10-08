@@ -283,10 +283,21 @@ const filterMovies = () => {
   // If reverse checkbox is checked then we reverse the array. Since reverse actually affects the original array we dont need to store the result in a new variable
   if(document.getElementById(`filter-sort-reverse`).checked) filteredMovies.reverse();
 
+  // We grab the search text and apply it to the remaining movies.
+  const searchText = document.getElementById(`search`).value.toLowerCase();
+  if (searchText) {
+    filteredMovies = filteredMovies.filter((movie) => {
+      return movie.title.toLowerCase().includes(searchText)
+    })
+  }
+
   listMovies( filteredMovies );
 }
 
 // Lets set a eventListner to catch any changes
 document.querySelectorAll(".filter").forEach((item) => item.addEventListener("change", filterMovies));
+
+// Add event listner for our search function
+document.getElementById('search').addEventListener("input",filterMovies);
 
 listMovies( movies );
