@@ -27,3 +27,4 @@ This allows us to quickly envoke the addEventListner on all filters. And once ag
 There are endless possibilities in how we can improve this and the methods used would not work well on a bigger set of data but for this purpose it worked well. But the first step for improvement would be to build an filter object where we declare all the available filters, what kind of underlying data it filters and other properties connected to it.
 
 ## View it live
+https://fluffy-daifuku-8d9ef4.netlify.app/
